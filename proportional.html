@@ -508,7 +508,7 @@
 
 <div class="card">
 <h3>The Squaring the Circle (Almost)</h3>
-<p>One more party trick: extend each cardinal radius of a circle by ¼ (making 5/4 × r), draw a square around those points.</p>
+<p>Draw diagonals from the center of a circle to the corners of a square — each diagonal is 5r/4 long, making the corner-to-corner X span 2.5r.</p>
 <p>Square area = <code>(5/4 × 2r)² / 4 = (25/8)r² = 3.125r²</code></p>
 <p>Circle area = <code>πr² ≈ 3.14159r²</code></p>
 <p>Difference: <strong>0.53%</strong>. Invisible at drawing scale. A magic trick from the relationship between hypotenuse and radius — they're nearly exactly 2.5 apart.</p>
@@ -1005,32 +1005,33 @@ const crc = document.getElementById('circleCanvas').getContext('2d');
   crc.beginPath(); crc.arc(cx,cy,r,0,Math.PI*2);
   crc.strokeStyle='#3b82f6'; crc.lineWidth=2; crc.stroke();
 
-  // Extended radii (5/4)
+  // Diagonal X to corners (5r/4 each, 2.5r corner-to-corner)
   const ext = r * 5/4;
-  const dirs = [[0,-1],[1,0],[0,1],[-1,0]];
-  dirs.forEach(([dx,dy]) => {
+  const d = ext / Math.SQRT2;  // corner offset from center
+  const corners = [[-1,-1],[1,-1],[1,1],[-1,1]];
+  corners.forEach(([dx,dy]) => {
     crc.beginPath(); crc.moveTo(cx,cy);
-    crc.lineTo(cx+dx*ext, cy+dy*ext);
+    crc.lineTo(cx+dx*d, cy+dy*d);
     crc.strokeStyle='rgba(249,115,22,0.5)'; crc.lineWidth=1; crc.setLineDash([3,3]); crc.stroke(); crc.setLineDash([]);
 
-    // Mark 5/4 point
-    crc.beginPath(); crc.arc(cx+dx*ext, cy+dy*ext, 3, 0, Math.PI*2);
+    // Mark corner point
+    crc.beginPath(); crc.arc(cx+dx*d, cy+dy*d, 3, 0, Math.PI*2);
     crc.fillStyle='#f97316'; crc.fill();
   });
 
-  // Square around 5/4 points
+  // Square connecting corners
   crc.strokeStyle='#f97316'; crc.lineWidth=2;
-  crc.strokeRect(cx-ext, cy-ext, ext*2, ext*2);
+  crc.strokeRect(cx-d, cy-d, d*2, d*2);
 
   // Labels
   crc.fillStyle='#3b82f6'; crc.font='12px Inter';
   crc.fillText(`Circle: πr² ≈ ${(Math.PI*r*r).toFixed(0)}px²`, 20, 380);
   crc.fillStyle='#f97316';
-  crc.fillText(`Square: (5r/2)² ≈ ${(ext*2*ext*2/4).toFixed(0)}px²  (${((25/8/Math.PI-1)*100).toFixed(2)}% off)`, 20, 395);
+  crc.fillText(`Square: (2d)² ≈ ${(d*2*d*2).toFixed(0)}px²  (${((d*2*d*2/(Math.PI*r*r)-1)*100).toFixed(2)}% off)`, 20, 395);
   crc.fillStyle='#71717a'; crc.font='10px Inter';
   crc.fillText('r', cx+5, cy-r/2);
   crc.fillStyle='#f97316';
-  crc.fillText('5r/4', cx+5, cy-r-10);
+  crc.fillText('5r/4', cx+5, cy-d-5);
 })();
 </script>
 </body>
