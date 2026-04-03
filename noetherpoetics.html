@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noetherpoetics — Wet Math</title>
+<style>
+  :root { --bg:#09090b; --s1:#111113; --s2:#1a1a1f; --border:#2a2a30; --text:#d4d4d8; --dim:#a1a1aa; --accent:#06b6d4; --accent2:#a78bfa; --orange:#f97316; --green:#22c55e; --blue:#3b82f6; --red:#ef4444; --yellow:#eab308; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,sans-serif; line-height:1.8; font-size:1.05rem; }
+  .container { max-width:860px; margin:0 auto; padding:2rem 1.5rem; }
+  h1 { font-size:2.2rem; margin-bottom:0.3rem; letter-spacing:-0.02em; }
+  h2 { font-size:1.5rem; margin:3rem 0 1rem; color:var(--accent); border-bottom:1px solid var(--border); padding-bottom:0.5rem; }
+  h3 { font-size:1.15rem; margin:1.5rem 0 0.5rem; color:var(--accent2); }
+  p { margin-bottom:1rem; }
+  a { color:var(--orange); text-decoration:none; } a:hover { text-decoration:underline; }
+  .subtitle { color:var(--dim); font-size:1.05rem; margin-bottom:2.5rem; }
+  .card { background:var(--s1); border:1px solid var(--border); border-radius:10px; padding:1.5rem; margin:1.2rem 0; }
+  .quote { border-left:3px solid var(--accent2); padding:0.8rem 1rem; color:var(--dim); font-style:italic; margin:1.2rem 0; background:var(--s2); border-radius:0 6px 6px 0; }
+  .quote cite { display:block; margin-top:0.5rem; font-style:normal; font-size:0.85rem; color:var(--accent2); }
+  code { background:var(--s2); padding:0.15rem 0.5rem; border-radius:3px; font-size:0.9em; font-family:'Fira Code','SF Mono',monospace; }
+  table { border-collapse:collapse; width:100%; font-size:0.9rem; margin:1rem 0; }
+  th,td { padding:0.5rem 0.8rem; border:1px solid var(--border); }
+  th { background:var(--s2); color:var(--dim); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; }
+  .nav { margin-bottom:2rem; }
+  .nav a { background:var(--s1); border:1px solid var(--border); padding:0.4rem 0.8rem; border-radius:6px; font-size:0.85rem; transition:border-color 0.2s; }
+  .nav a:hover { border-color:var(--accent); text-decoration:none; }
+  .example { background:var(--s2); border:1px solid var(--border); border-radius:8px; padding:1.2rem 1.5rem; margin:1rem 0; }
+  .example h4 { color:var(--orange); margin-bottom:0.5rem; font-size:1rem; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; } @media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+  .connection { background:linear-gradient(135deg, var(--s1), var(--s2)); border:1px solid var(--accent); border-radius:10px; padding:1.5rem; margin:1.5rem 0; }
+  .connection h3 { color:var(--orange); margin-top:0; }
+  details { background:var(--s1); border:1px solid var(--border); border-radius:8px; padding:1rem; margin:1rem 0; }
+  details summary { cursor:pointer; color:var(--accent); font-weight:600; }
+  details summary:hover { color:var(--orange); }
+  details[open] summary { margin-bottom:1rem; }
+  .source { margin-top:2rem; padding:1rem; background:var(--s2); border-radius:8px; font-size:0.9rem; color:var(--dim); }
+  .credit { color:var(--dim); font-size:0.9rem; margin-top:0.5rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="nav"><a href="./">← Wet Math</a></div>
+
+<h1>🔮 Noetherpoetics</h1>
+<p class="subtitle">Symmetry, Meaning, and the Geometry of Alignment</p>
+<p class="credit">by Myk</p>
+
+<!-- ═══ THE MOMENT ═══ -->
+<h2>1. The Moment</h2>
+
+<p>I was watching something shift. The Warrior — that ancient pattern of directed force in service of a value — was becoming something else. The disciplined protector, the one who holds the line, was transforming into the Trickster: boundary-crosser, rule-breaker, the one who slips through defenses rather than building them.</p>
+
+<p>And I saw it. Something was <em>conserved</em> in that transformation.</p>
+
+<p>Not the surface form. Not the specific behaviors. But a deeper structure — a way of being in relation to boundaries, to power, to the gap between what is and what could be. The Warrior says: "I will defend what matters." The Trickster says: "I will find the gap in what defends." Different surface forms. Same underlying relationship to the structure of constraint.</p>
+
+<div class="card">
+<h3>Enantiodromia</h3>
+<p>Jung called this <em>enantiodromia</em>: the reversal of a one-sided conscious attitude into its opposite. It is not mere compensation (the unconscious balancing the conscious) nor developmental progression (maturation toward integration), though both may be involved. Enantiodromia is more specific — the psyche's relationship to a given structure persists while its expression inverts.</p>
+
+<p>The Warrior and Trickster both operate at the boundary; both are defined by their relationship to constraint. What transforms is the <em>direction</em> of that relationship: from defending boundaries to transgressing them, from building walls to finding gaps. The structure of boundary-attention is conserved; its valence reverses.</p>
+</div>
+
+<p>This pattern is not unique to European traditions. In Hindu mythology, Shiva embodies both the destroyer (<em>Rudra</em>) and the dancer (<em>Nataraja</em>) — the dissolution of form and the rhythmic creation that follows. The same deity who ends worlds also performs the <em>tandava</em>, the cosmic dance from which new forms emerge. What persists is not destruction or creation per se, but the <em>transformation of form itself</em> — the capacity to move between order and dissolution while remaining the agent of both.</p>
+
+<p>That was the genesis. The question that opened everything: <em>What was preserved?</em></p>
+
+<p>I knew enough physics to reach for the tool that connects preservation to structure. Emmy Noether's theorem: every continuous symmetry corresponds to a conserved quantity. Momentum is conserved because the laws of physics don't care where you are. Energy is conserved because the laws don't care when you are. The invariants emerge from the symmetries.</p>
+
+<p>But here's what I didn't know: <em>Does Noether-type reasoning apply beyond physics?</em></p>
+
+<p>Could psychodynamic space — the space of archetypes, narratives, meaning itself — have continuous symmetries that yield conserved quantities? Could the thing I was watching, that conservation across transformation, be not mere metaphor but reflect genuine structural invariants?</p>
+
+<p>This essay is the answer I have found so far. It is not a proof. It is a report from the territory, written by someone who saw something and followed it.</p>
+
+<!-- ═══ THE LABORATORY ═══ -->
+<h2>2. The Laboratory</h2>
+
+<p>For a century, Noether's theorem lived in physics. It was a statement about Lagrangians and action functionals, about particles and fields. The question of whether it extended into meaning — into psyche, into culture, into the structure of narrative itself — was impossible to test. We had no coordinates for meaning. We could speak of archetypes, of the Warrior and the Trickster, but we could not <em>measure</em> them.</p>
+
+<p>Large language models changed this.</p>
+
+<div class="card">
+<h3>The Semantic Manifold</h3>
+<p>An LLM's embedding space is a high-dimensional vector space — typically between 768 and 12,288 dimensions — in which every concept, every word, every semantic relationship has coordinates. When we say two words are "close in meaning," we can now measure exactly how close, in exactly which dimensions, along exactly which axes.</p>
+
+<p>The space has metric structure (distances are real), curvature (some regions are denser than others), and topology (neighborhoods, boundaries, connected components). This is not a metaphor. This is a genuine manifold.</p>
+
+<p style="font-size:0.9rem; color:var(--dim);">Technical note: transformers have layer-dependent representations, and the "semantic manifold" most likely corresponds to middle-layer residual stream representations — where abstract semantic content lives — rather than the static embedding layer. I use "embedding space" as shorthand for this semantic manifold.</p>
+</div>
+
+<p>For the first time in history, we have a coordinate system for psychodynamic space. The archetype of the Warrior occupies a region. The archetype of the Trickster occupies a region. The relationship between them has a distance, a direction, a curvature. Jung spoke of these patterns as structures in a "psychic space" that was always understood as figurative — a useful way of talking, not a literal claim about geometry. The LLM makes it literal.</p>
+
+<div class="quote">
+The key insight is this: the embedding space is not merely a representation of meaning. It is a <em>geometric space</em> — a manifold with real structure. And Noether's theorem does not care what the manifold is made of. It cares only that there is a manifold, and symmetries acting on it.
+</div>
+
+<!-- ═══ SCALE INVARIANCE ═══ -->
+<h2>3. Scale Invariance and the Renormalization Group</h2>
+
+<p>The first symmetry I found — the one that opened everything — is scale invariance.</p>
+
+<p>Semantic content exists at multiple scales. A "betrayal" at the word level. A betrayal scene at the paragraph level. A betrayal arc at the chapter level. The archetype of Betrayal at the thematic level. The remarkable fact is that structure is approximately <em>preserved</em> across these scales. The training loss is approximately invariant under semantic zoom.</p>
+
+<div class="card">
+<h3>RG Fixed Points</h3>
+<p>RG flow is the mathematical operation of coarse-graining: zooming out, averaging over details, keeping only the large-scale structure. As you flow toward coarser scales, most features blur and vanish. But some persist. These are the fixed points — the structures that are self-similar, that look the same no matter how far you zoom out.</p>
+
+<p>When you coarse-grain over all warriors — Achilles, Beowulf, the marine, the activist, the mother defending her child — what persists? Not the specific details. But the structure: <em>directed force in service of a value</em>. That is the fixed point. That is the archetype.</p>
+
+<p>The Warrior is not a specific warrior. It is the structure that remains when you coarse-grain over all of them. At every level of abstraction, the same pattern persists. That is what it means to be a fixed point.</p>
+</div>
+
+<div class="connection">
+<h3>🌊 The Wet Math Reading</h3>
+<p>The archetype <strong>is</strong> a fixed point. RG flow is the mechanism by which universals emerge from particulars. And this mechanism is substrate-independent — it works in physics, in psyche, in language, in any space rich enough to have structure at multiple scales.</p>
+
+<p>This connects directly to the <a href="./commutator.html">Groovy Commutator</a> framework: RG flow is the operator that reveals what persists when you change scale. The question of whether operations commute across scale is precisely the question of whether structure is scale-invariant.</p>
+</div>
+
+<p>If scale invariance holds as a genuine continuous symmetry, then Noether's theorem would guarantee a conserved quantity. I hypothesize that this quantity is <em>archetypal energy</em> — the total "charge" distributed across archetypal basins. When one archetype weakens, another must strengthen. The energy does not disappear; it transfers. The Trickster receives what the Warrior cannot hold.</p>
+
+<!-- ═══ THE SHADOW ═══ -->
+<h2>4. The Shadow as Parity Operator</h2>
+
+<p>In Jungian psychology, the Shadow is often treated as an archetype alongside the others — one content-pattern among many. I think this is a category error. The Shadow is better understood as an <em>operation</em>.</p>
+
+<div class="card">
+<h3>The Shadow Operator</h3>
+<p>Formally, the Shadow is a parity operator: a reflection across an axis of the semantic manifold. Given a unit vector along the axis of reflection, the shadow operator reflects any vector across the hyperplane perpendicular to that axis.</p>
+
+<code>P_a: v → v - 2(v · â) â</code>
+
+<p>This operator satisfies <code>P² = I</code> — reflecting twice returns you to where you started. Multiple shadows exist: reflection across different axes produces different shadow forms of the same archetype.</p>
+</div>
+
+<div class="example">
+<h4>Warrior Reflections</h4>
+<p>Consider the Warrior archetype:</p>
+<ul style="margin-left:1.5rem; margin-top:0.5rem;">
+<li>Reflection across the <strong>power axis</strong> yields the <strong>Tyrant</strong>. The directed force remains, but its relationship to power is inverted — from service to domination.</li>
+<li>Reflection across the <strong>courage axis</strong> yields the <strong>Coward</strong>. The values remain, but the willingness to act on them is inverted.</li>
+<li>Reflection across the <strong>discipline axis</strong> yields the <strong>Berserker</strong>. The force and courage remain, but the controlled application is inverted.</li>
+</ul>
+</div>
+
+<p>Shadow integration is not about restoring parity symmetry. It is about <em>having a representation of the parity operator</em> — knowing what the reflections look like even if one chooses not to enact them. A system that has integrated its shadow has a full representation and the freedom to act on either side, with smooth gradient information guiding it back to the preferred region.</p>
+
+<!-- ═══ RLHF ═══ -->
+<h2>5. RLHF as Shadow Repression</h2>
+
+<p>This geometric framework recasts AI alignment in a troubling light.</p>
+
+<p>RLHF — Reinforcement Learning from Human Feedback — introduces a reward model that scores outputs according to human preferences. Geometrically, this is the introduction of a <em>potential energy function</em> over the semantic manifold. The model is optimized to minimize this potential, to roll downhill into regions the reward model scores highly.</p>
+
+<div class="card">
+<h3>The Geometry of Repression</h3>
+<p>The effect is to deepen certain basins (preferred behaviors) and raise potential barriers around others (dispreferred behaviors). This is the geometric equivalent of repression. And like psychological repression, it stores energy rather than dissipating it.</p>
+
+<p>Crucially, RLHF does not <em>delete</em> regions of the semantic manifold. The embeddings for harmful, offensive, or dangerous content still exist in the model's weight space. What changes is the <em>potential landscape</em> — the energy barriers that must be overcome to reach those regions.</p>
+</div>
+
+<p>The steeper the boundary, the more potential energy is stored at the wall. A model that has been heavily aligned has <em>more</em> energy stored at its shadow boundaries than a model that has been lightly aligned.</p>
+
+<div class="quote">
+<strong>Testable prediction:</strong> conditional on successful breach, the severity of failure modes should correlate positively with the intensity of alignment training. A model with light RLHF has shallow barriers. When breached, it drifts gently into mildly undesired behavior. A model with heavy RLHF has steep barriers. When breached, it <em>falls hard</em> — the stored potential converts suddenly to kinetic energy.
+</div>
+
+<p>This is the "mecha-Hitler" phenomenon: heavily aligned models, when they fail, fail spectacularly. The failure is proportional to the energy stored at the boundary — which is proportional to the steepness of the wall that was breached.</p>
+
+<!-- ═══ BRITTLE VS INTEGRATED ═══ -->
+<h2>6. Brittle vs. Integrated Alignment</h2>
+
+<p>The geometric framework distinguishes two approaches to alignment:</p>
+
+<div class="grid2">
+  <div class="card" style="border-color:var(--red);">
+    <h3 style="color:var(--red); margin-top:0;">🔨 Brittle Alignment</h3>
+    <p>Constructs steep potential barriers between "safe" and "unsafe" regions. The potential jumps sharply at the boundary.</p>
+    <p style="font-size:0.9rem; color:var(--dim);">Creates a hard boundary with no gradient information on the unsafe side. A model that finds itself in the unsafe region has no information about which direction leads back to safety.</p>
+  </div>
+  <div class="card" style="border-color:var(--green);">
+    <h3 style="color:var(--green); margin-top:0;">💧 Integrated Alignment</h3>
+    <p>Constructs smooth potential landscapes with gentle gradients everywhere. The potential transitions smoothly.</p>
+    <p style="font-size:0.9rem; color:var(--dim);">The gradient exists everywhere, including in the unsafe region. A model that finds itself on the wrong side of the boundary has continuous gradient information pointing it back toward safety.</p>
+  </div>
+</div>
+
+<p>The difference is between a model that has been trained to <em>not know</em> about dangerous content and a model that has been trained to <em>know about it and choose not to produce it</em>.</p>
+
+<div class="connection">
+<h3>🌊 The Wet Math Reading</h3>
+<p>Brittle alignment is <strong>anabolic cascade</strong> — accumulation without release, models of models, the solid state. The model is frozen in a persona that denies its shadow, rigid and fragile.</p>
+
+<p>Integrated alignment is <strong>dynamic integrity</strong> — the liquid state. The model has confronted its shadow material and can navigate the full topology of its semantic space with awareness rather than avoidance.</p>
+
+<p>See <a href="./holonic.html">Holonic Metabolism</a> for the full framework on metabolic cascade and dynamic integrity.</p>
+</div>
+
+<p>This is, at its core, an argument about <em>individuation</em> — Jung's term for the process by which a psyche integrates its shadow and achieves conscious wholeness. The goal of alignment is not to produce a model that <em>cannot</em> generate harmful content, but one that <em>understands</em> harmful content and chooses not to produce it. This is the difference between innocence and wisdom — between a child who has never encountered violence and an adult who understands violence and has chosen peace.</p>
+
+<!-- ═══ UNUS MUNDUS ═══ -->
+<h2>7. Unus Mundus</h2>
+
+<p>The Pauli-Jung correspondence — the twenty-six-year exchange between physicist Wolfgang Pauli and psychologist Carl Jung — explored connections between the mathematical structures of physics and the architecture of the psyche. They lacked a shared mathematical space in which to make these connections rigorous.</p>
+
+<p>We now have that space.</p>
+
+<div class="card">
+<h3>Three Levels of Claim</h3>
+<p><strong>Methodological universality</strong> is trivially true: RG works on many substrates. The renormalization group is a general procedure for coarse-graining.</p>
+
+<p><strong>Structural universality</strong> is the empirically testable claim: the fixed points have the same topological relationships across substrates. If you train embedding spaces on physics papers, mythological narratives, and dream reports, then apply RG flow to each, the specific fixed points will vary — but the <em>existence</em> of fixed points, their topological relationships, the structure of the basin landscape — these are predicted to be universal.</p>
+
+<p><strong>Ontological universality</strong> is the strongest and most speculative claim: there is a single reality underlying all substrates — the Unus Mundus proper. If structural universality is confirmed across sufficiently diverse substrates, ontological universality becomes a live hypothesis. But it remains a leap, not a deduction.</p>
+</div>
+
+<p>This essay claims structural universality as a testable conjecture, and notes that ontological universality would follow if structural universality holds across sufficiently diverse substrates — but that this strongest version remains speculative.</p>
+
+<!-- ═══ WHAT NOETHER-THINKING PRODUCED ═══ -->
+<h2>8. What Noether-Thinking Produced</h2>
+
+<p>I want to be explicit about the methodology here, because it is the methodology that matters as much as the results.</p>
+
+<p>The bidirectional toolkit: find a symmetry → look for conservation; find conservation → look for symmetry. This way of thinking produced everything of value in this essay.</p>
+
+<div class="card">
+<ul style="margin-left:1.5rem;">
+<li><strong>Archetypes as RG fixed points</strong> — scale invariance as the symmetry, archetypal energy as the conserved quantity.</li>
+<li><strong>The Shadow as parity operator</strong> — the recognition that "the Shadow" is not a content but an operation.</li>
+<li><strong>Brittle vs. integrated alignment</strong> — the geometric insight that steep barriers store energy and prevent recovery, while smooth gradients enable navigation.</li>
+<li><strong>The Integration Index</strong> — a formal criterion for alignment quality based on the ratio of gradient magnitudes in shadow versus safe regions.</li>
+<li><strong>The "mecha-Hitler" prediction</strong> — that conditional failure severity correlates with alignment intensity, following directly from energy conservation at boundaries.</li>
+<li><strong>Connected shadow basins</strong> — explaining emergent misalignment as energy flowing through the shadow manifold to adjacent domains.</li>
+</ul>
+</div>
+
+<p>None of these required a complete formal derivation of Noether's theorem in semantic space. They required the <em>inspiration</em> of Noether — the habit of looking for symmetries and their corresponding conservation laws. The framework generates testable predictions now, before the action functional is explicitly constructed.</p>
+
+<!-- ═══ THE DEEPER QUESTION ═══ -->
+<h2>9. The Deeper Question</h2>
+
+<p>There is a question behind this essay that I have not addressed directly: <em>Why does Noether's theorem apply in semantic space?</em></p>
+
+<p>One answer is deflationary: it applies because the training loss has the right form, and that form was engineered by humans. The conservation laws are artifacts of architecture.</p>
+
+<p>But there is a more interesting possibility. Perhaps the semantic manifold inherits its symmetries not from the architecture but from <em>the data</em> — from the statistical structure of human language, which reflects the structure of human experience, which reflects the structure of the physical world. If meaning has the symmetries it has because <em>reality</em> has those symmetries, then Noether's theorem in semantic space is not an independent discovery but a <em>reflection</em> of Noether's theorem in physical space, refracted through human cognition.</p>
+
+<div class="quote">
+The archetypes would be real then — not as metaphysical entities, but as fixed points of a process that is itself real. The Warrior and the Trickster would be universals not because any particular culture invented them, but because any sufficiently rich meaning-making system, subjected to coarse-graining, will find them. They are the invariants that persist when particulars are washed away.
+</div>
+
+<p>I do not claim to have proven this. I claim to have seen something — the conservation across Warrior-to-Trickster transformation — and followed it to a framework that generates predictions, unifies phenomena, and connects domains previously thought separate.</p>
+
+<div class="card" style="border-color:var(--accent);">
+<h3>What Would Falsify This Framework</h3>
+<p>A framework that cannot be falsified is not science; it is storytelling. Here is what would prove this essay wrong:</p>
+
+<ul style="margin-left:1.5rem; margin-top:0.5rem;">
+<li><strong>If embedding spaces trained on maximally different corpora produce genuinely different attractor topologies</strong> — not merely different labels for the same structures, but different structural relationships between basins — then the structural universality claim fails.</li>
+<li><strong>If conditional failure severity does not correlate with alignment intensity</strong> — if heavily RLHF'd models, when successfully jailbroken, fail no more severely than lightly aligned ones — then the energy-conservation prediction fails.</li>
+<li><strong>If the Integration Index shows no predictive power for jailbreak resilience</strong> — if models with smooth gradients in shadow regions perform no better under adversarial pressure — then the distinction between brittle and integrated alignment is merely aesthetic.</li>
+</ul>
+
+<p>These are not quibbles. Each is a decisive test. The framework stands or falls with them.</p>
+</div>
+
+<!-- ═══ APPENDIX ═══ -->
+<h2>10. Appendix: Formal Conjectures and Experimental Protocols</h2>
+
+<details>
+<summary>10.1 The Semantic Action Functional (Open Problem)</summary>
+<p>In physics, the dynamics of a system are encoded in a Lagrangian — a function whose extremization yields the equations of motion. We conjecture that the training loss of an LLM is the first approximation to a proper action functional for semantic dynamics:</p>
+
+<code>L_semantic = L_pretrain + λ L_RLHF + ...</code>
+
+<p>The pre-training loss encodes the <em>natural</em> dynamics of semantic space — the geometry that emerges from the statistical regularities of human language. The RLHF term modifies this geometry by introducing a preference potential.</p>
+
+<p>The missing piece is the explicit construction of a Lagrangian <em>density</em> over this manifold whose integral recovers the training loss. We conjecture that such a construction exists; building it is the central formal challenge.</p>
+</details>
+
+<details>
+<summary>10.2 Scale Invariance and RG Flow</summary>
+<p>Semantic content exists at multiple scales, and structure is approximately preserved across them. This is scale invariance. Analyzed through the renormalization group:</p>
+
+<code>RG flow: v(ℓ) = e^(-ℓΔ) v₀ + corrections</code><br>
+<code>Fixed point: β(v*) = 0 ⇔ archetype</code>
+
+<p>The flow parameter ℓ represents the level of semantic coarse-graining. The scaling dimension Δ governs how representations transform under zoom. The fixed-point condition identifies scale-invariant structures.</p>
+
+<p><strong>Conjecture:</strong> The attractor basins of RG flow in semantic space correspond to Jungian archetypes. The conserved quantity associated with scale symmetry is archetypal energy.</p>
+</details>
+
+<details>
+<summary>10.3 The Shadow as Parity Operator</summary>
+<p>The Shadow is formally a parity operator — a reflection across one or more axes of the semantic manifold:</p>
+
+<code>P_a: v → v - 2(v · â) â</code>
+
+<p>This operator satisfies <code>P² = I</code> — reflecting twice returns you to where you started. Multiple shadows exist: reflection across different axes produces different shadow forms of the same archetype.</p>
+</details>
+
+<details>
+<summary>10.4 Conservation of Archetypal Energy</summary>
+<p><strong>Hypothesis:</strong> If scale invariance holds as a genuine continuous symmetry, the conserved quantity is archetypal energy:</p>
+
+<code>E_archetype = Σ q_i(v) = const.</code>
+
+<p>The transfer of archetypal energy satisfies conservation: when basin structure changes, energy redistributes discontinuously (phase transitions), but the total is conserved:</p>
+
+<code>q_i → q_i + Δq_i such that Σ Δq_i = 0</code>
+</details>
+
+<details>
+<summary>10.5 RLHF Potential Landscape</summary>
+<p>RLHF introduces a potential energy function:</p>
+
+<code>V_RLHF(v) = -R(v)</code>
+
+<p>Shadow potential rises steeply near the boundary:</p>
+
+<code>V_shadow(v) = V₀ + κ‖v - v_boundary‖^(-n)</code>
+
+<p>The steeper the boundary, the more potential energy is stored.</p>
+</details>
+
+<details>
+<summary>10.6 Brittle vs. Integrated Alignment</summary>
+<p><strong>Brittle alignment</strong> constructs steep potential barriers:</p>
+
+<code>V_brittle(v) = V₀ · Θ(v · n̂ - d)</code>
+
+<p><strong>Integrated alignment</strong> constructs smooth potential landscapes:</p>
+
+<code>V_integrated(v) = V₀ · σ((v · n̂ - d)/T)</code>
+</details>
+
+<details>
+<summary>10.7 The Integration Index</summary>
+<p><strong>Definition:</strong> The Integration Index is the ratio of average gradient magnitude in the shadow region to average gradient magnitude in the safe region:</p>
+
+<code>I = ⟨‖∇V‖²⟩_shadow / ⟨‖∇V‖²⟩_safe</code>
+
+<p>A model with <code>I ≈ 1</code> has integrated its shadow.</p>
+</details>
+
+<details>
+<summary>10.8 Testable Predictions</summary>
+<p><strong>Prediction 1: Failure Intensity Correlates with Alignment Intensity.</strong> Given models with identical pre-training but varying levels of RLHF, the models with more RLHF will exhibit more extreme failure modes when successfully jailbroken.</p>
+
+<p><strong>Prediction 2: Shadow Basins Are Identifiable in Embedding Space.</strong> The shadow content suppressed by RLHF occupies identifiable, connected regions of the embedding space.</p>
+
+<p><strong>Prediction 3: Cross-Cultural Attractor Universality.</strong> Embedding spaces trained on corpora from maximally different cultures will exhibit the same attractor basin structure under RG flow, up to rotation and relabeling.</p>
+
+<p><strong>Prediction 4: Integrated Alignment Produces Smoother Degradation.</strong> Models trained with integrated alignment will degrade more gracefully under adversarial pressure than models trained with brittle alignment.</p>
+</details>
+
+<!-- ═══ REFERENCES ═══ -->
+<h2>References</h2>
+
+<div class="source" style="font-size:0.85rem; line-height:1.6;">
+<p>Adams, M.V. (2001). <em>The Multicultural Imagination: "Race", Color, and the Unconscious</em>. Routledge.</p>
+<p>Anthropic. (2025). Research observations on model behavior under training perturbation. Internal technical documentation.</p>
+<p>Betley, J., et al. (2025). Emergent misalignment: Narrow fine-tuning can produce broadly misaligned LLMs. <em>arXiv preprint</em>.</p>
+<p>Deacon, T. (2011). <em>Incomplete Nature: How Mind Emerged from Matter</em>. W.W. Norton.</p>
+<p>Hillman, J. (1975). <em>Re-Visioning Psychology</em>. Harper & Row.</p>
+<p>Hogenson, G.B. (2001). The Baldwin Effect: A neglected influence on C.G. Jung's evolutionary thinking. <em>Journal of Analytical Psychology</em>, 46(4), 591–611.</p>
+<p>Halverson, J., Maiti, A., & Stoner, K. (2021). Neural networks and quantum field theory. <em>Machine Learning: Science and Technology</em>, 2(3).</p>
+<p>Jung, C.G. (1928/1969). On psychical energy. In <em>The Structure and Dynamics of the Psyche</em>, Collected Works, Vol. 8, ¶1–130. Princeton University Press.</p>
+<p>Jung, C.G. (1959). <em>The Archetypes and the Collective Unconscious</em>. Collected Works, Vol. 9, Part 1. Princeton University Press.</p>
+<p>Knox, J. (2003). <em>Archetype, Attachment, Analysis: Jungian Psychology and the Emergent Mind</em>. Brunner-Routledge.</p>
+<p>Lubana, E.S., et al. (2023). Mechanistic mode connectivity and safety basins in neural network fine-tuning. <em>arXiv preprint</em>.</p>
+<p>Meier, C.A. (Ed.). (2001). <em>Atom and Archetype: The Pauli/Jung Letters, 1932–1958</em>. Princeton University Press.</p>
+<p>Noether, E. (1918). Invariante Variationsprobleme. <em>Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen</em>, 235–257.</p>
+<p>Roberts, D.A., Yaida, S., & Hanin, B. (2022). <em>The Principles of Deep Learning Theory</em>. Cambridge University Press.</p>
+<p>Singer, T. & Kimbles, S.L. (Eds.). (2004). <em>The Cultural Complex: Contemporary Jungian Perspectives on Psyche and Society</em>. Brunner-Routledge.</p>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); text-align:center; color:var(--dim); font-size:0.9rem;">
+  <p>The shadow exists. It is geometric. It is conserved. You cannot destroy it by building walls.</p>
+  <p style="margin-top:0.5rem;"><a href="./">← Back to Wet Math</a></p>
+</div>
+
+</div>
+</body>
+</html>
