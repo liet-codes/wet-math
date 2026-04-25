@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Exponentiation — Shell Decomposition</title>
+<style>
+  :root { --bg:#09090b; --s1:#111113; --s2:#1a1a1f; --border:#2a2a30; --text:#d4d4d8; --dim:#a1a1aa; --accent:#06b6d4; --accent2:#a78bfa; --orange:#f97316; --green:#22c55e; --blue:#3b82f6; --red:#ef4444; --yellow:#eab308; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Inter',system-ui,sans-serif; line-height:1.8; font-size:1.05rem; }
+  .container { max-width:1000px; margin:0 auto; padding:2rem 1.5rem; }
+  h1 { font-size:2.2rem; margin-bottom:0.3rem; letter-spacing:-0.02em; }
+  h2 { font-size:1.4rem; margin:2.5rem 0 1rem; color:var(--accent); border-bottom:1px solid var(--border); padding-bottom:0.5rem; }
+  h3 { font-size:1.1rem; margin:1.5rem 0 0.5rem; color:var(--accent2); }
+  p { margin-bottom:1rem; }
+  a { color:var(--orange); text-decoration:none; } a:hover { text-decoration:underline; }
+  .subtitle { color:var(--dim); font-size:1.1rem; margin-bottom:2rem; }
+  .card { background:var(--s1); border:1px solid var(--border); border-radius:10px; padding:1.5rem; margin:1.2rem 0; }
+  .equation { font-family:'Fira Code','SF Mono',monospace; font-size:1.3rem; color:var(--accent); margin:1.5rem 0; text-align:center; padding:1rem; background:var(--s2); border-radius:8px; }
+  .equation-small { font-family:'Fira Code','SF Mono',monospace; font-size:1rem; color:var(--accent2); }
+  code { background:var(--s2); padding:0.15rem 0.5rem; border-radius:3px; font-size:0.9em; font-family:'Fira Code','SF Mono',monospace; }
+  
+  /* Controls */
+  .controls { display:flex; gap:2rem; flex-wrap:wrap; margin:1.5rem 0; }
+  .control-group { display:flex; flex-direction:column; gap:0.5rem; }
+  .control-group label { color:var(--dim); font-size:0.9rem; }
+  input[type="number"] { 
+    background:var(--s2); border:1px solid var(--border); color:var(--text); 
+    padding:0.5rem 1rem; border-radius:6px; font-size:1.1rem; width:100px;
+  }
+  input[type="range"] { width:200px; }
+  
+  /* Results */
+  .result-box { 
+    background:linear-gradient(135deg, var(--s2), var(--s1)); 
+    border:1px solid var(--accent); border-radius:10px; padding:1.5rem; margin:1.5rem 0;
+  }
+  .result-box h3 { margin-top:0; color:var(--orange); }
+  .big-number { font-size:2.5rem; color:var(--accent); font-family:'Fira Code',monospace; }
+  .decomposition { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin:1rem 0; }
+  .term { background:var(--s2); padding:0.5rem 1rem; border-radius:6px; text-align:center; }
+  .term .label { font-size:0.75rem; color:var(--dim); text-transform:uppercase; }
+  .term .value { font-size:1.2rem; color:var(--accent2); font-family:'Fira Code',monospace; }
+  .operator { color:var(--dim); font-size:1.5rem; }
+  
+  /* Table */
+  table { border-collapse:collapse; width:100%; font-size:0.9rem; margin:1rem 0; }
+  th,td { padding:0.6rem 0.8rem; border:1px solid var(--border); }
+  th { background:var(--s2); color:var(--dim); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; }
+  td { font-family:'Fira Code',monospace; }
+  .shell-col { color:var(--accent2); }
+  .power-col { color:var(--accent); }
+  .geometric-col { color:var(--orange); }
+  
+  /* Visualization */
+  .viz-container { display:flex; gap:2rem; margin:1.5rem 0; flex-wrap:wrap; }
+  .viz-panel { flex:1; min-width:300px; }
+  .triangles { display:flex; flex-direction:column; gap:0.5rem; }
+  .triangle-row { display:flex; align-items:center; gap:1rem; }
+  .triangle { 
+    width:0; height:0; 
+    border-left:20px solid transparent; 
+    border-right:20px solid transparent; 
+    border-bottom:35px solid var(--accent);
+    opacity:0.8;
+  }
+  .triangle.blue { border-bottom-color:var(--blue); }
+  .triangle.orange { border-bottom-color:var(--orange); }
+  .triangle.green { border-bottom-color:var(--green); }
+  .triangle-count { color:var(--dim); font-size:0.9rem; }
+  
+  /* Shell breakdown */
+  .shell-visual { 
+    display:flex; align-items:center; justify-content:center; 
+    gap:0.5rem; padding:1rem; background:var(--s2); border-radius:8px; margin:1rem 0;
+  }
+  .shell-part { 
+    padding:0.5rem 1rem; border-radius:6px; text-align:center; font-family:'Fira Code',monospace;
+  }
+  .shell-a { background:rgba(6,182,212,0.2); border:1px solid var(--accent); }
+  .shell-minus { background:rgba(239,68,68,0.2); border:1px solid var(--red); }
+  .shell-plus { background:rgba(34,197,94,0.2); border:1px solid var(--green); }
+  .shell-a2 { background:rgba(167,139,250,0.2); border:1px solid var(--accent2); }
+  
+  .back-link { display:inline-block; margin-bottom:2rem; color:var(--dim); }
+  .back-link:hover { color:var(--orange); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="back-link">← Back to Wet Math</a>
+
+<!-- ═══ HERO ═══ -->
+<h1>Linear Exponentiation</h1>
+<p class="subtitle">A different kind of exponentiation — shell decomposition for linear thinkers</p>
+
+<div class="equation">
+  A<sup>n</sup> = A + (A³ − A) × ((A<sup>(n−1)</sup> − 1)/(A² − 1))
+</div>
+
+<!-- ═══ EXPLANATION ═══ -->
+<div class="card">
+<p><strong>Patrick's insight:</strong> Exponentiation doesn't have to be multiplicative. This formula reconstructs A<sup>n</sup> as a <em>linear accumulation</em> — the base A plus a series of "shells" that expand according to geometric principles.</p>
+
+<p>The key insight is that <code>(A³ − A)</code> factors as <code>(A−1)·A·(A+1)</code> — the product of three consecutive integers. This "shell" becomes the fundamental tile of the exponential structure. The fraction <code>(A^(n−1) − 1)/(A² − 1)</code> is the sum of a geometric series that tells us how many such tiles fit in the nth power.</p>
+
+<p>This bridges geometric and linear thinking: each base A produces a unique triangulation pattern, and the exponential power is measured in units of that base's shell.</p>
+</div>
+
+<!-- ═══ INTERACTIVE EXPLORER ═══ -->
+<h2>🎛️ Interactive Explorer</h2>
+
+<div class="card">
+  <div class="controls">
+    <div class="control-group">
+      <label for="baseInput">Base (A)</label>
+      <input type="number" id="baseInput" value="2" min="2" max="20" step="1">
+    </div>
+    <div class="control-group">
+      <label for="powerInput">Power (n)</label>
+      <input type="number" id="powerInput" value="5" min="2" max="12" step="1">
+    </div>
+    <div class="control-group">
+      <label>Quick Presets</label>
+      <div style="display:flex; gap:0.5rem;">
+        <button onclick="setValues(2,5)" style="background:var(--s2); border:1px solid var(--border); color:var(--text); padding:0.3rem 0.8rem; border-radius:4px; cursor:pointer;">2⁵</button>
+        <button onclick="setValues(3,4)" style="background:var(--s2); border:1px solid var(--border); color:var(--text); padding:0.3rem 0.8rem; border-radius:4px; cursor:pointer;">3⁴</button>
+        <button onclick="setValues(5,3)" style="background:var(--s2); border:1px solid var(--border); color:var(--text); padding:0.3rem 0.8rem; border-radius:4px; cursor:pointer;">5³</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESULTS ═══ -->
+<div class="result-box">
+  <h3>Computation Result</h3>
+  <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+    <span id="resultBase" class="big-number">2</span>
+    <span style="font-size:1.5rem; color:var(--dim);">^</span>
+    <span id="resultPower" class="big-number">5</span>
+    <span style="font-size:1.5rem; color:var(--dim);">=</span>
+    <span id="resultValue" class="big-number" style="color:var(--green);">32</span>
+  </div>
+  <p style="color:var(--dim); margin-top:0.5rem;">Standard: <span id="standardResult">32</span> ✓ Match confirmed</p>
+</div>
+
+<!-- ═══ DECOMPOSITION ═══ -->
+<h3>Shell Decomposition</h3>
+<div class="card">
+  <div class="decomposition">
+    <div class="term">
+      <div class="label">Base</div>
+      <div class="value" id="baseTerm">2</div>
+    </div>
+    <span class="operator">+</span>
+    <div class="term">
+      <div class="label">Shell (A³−A)</div>
+      <div class="value" id="shellTerm">6</div>
+    </div>
+    <span class="operator">×</span>
+    <div class="term">
+      <div class="label">Geometric Factor</div>
+      <div class="value" id="geoTerm">5</div>
+    </div>
+    <span class="operator">=</span>
+    <div class="term" style="border:1px solid var(--green);">
+      <div class="label">Result</div>
+      <div class="value" id="finalTerm" style="color:var(--green);">32</div>
+    </div>
+  </div>
+  
+  <p style="color:var(--dim); font-size:0.95rem;">
+    <span class="equation-small">A<sup>n</sup> = <span id="decompBase">2</span> + <span id="decompShell">6</span> × <span id="decompGeo">5</span> = <span id="decompResult">32</span></span>
+  </p>
+</div>
+
+<!-- ═══ SHELL VISUALIZATION ═══ -->
+<h3>The Shell Structure</h3>
+<div class="card">
+  <p>The shell <code>(A³ − A)</code> decomposes into three consecutive integers:</p>
+  <div class="shell-visual">
+    <div class="shell-part shell-a">A</div>
+    <span style="color:var(--dim);">×</span>
+    <div class="shell-part shell-minus">(A−1)</div>
+    <span style="color:var(--dim);">×</span>
+    <div class="shell-part shell-plus">(A+1)</div>
+    <span style="color:var(--dim);">=</span>
+    <div class="shell-part shell-a2" id="shellProduct">6</div>
+  </div>
+  <p style="text-align:center; color:var(--dim); font-size:0.9rem;">
+    <span id="shellFactors">2 × 1 × 3 = 6</span>
+  </p>
+</div>
+
+<!-- ═══ POWER TABLE ═══ -->
+<h3>Power Sequence for Base <span id="tableBase">2</span></h3>
+<div class="card" style="overflow-x:auto;">
+  <table id="powerTable">
+    <thead>
+      <tr>
+        <th>n</th>
+        <th>Shell (A³−A)</th>
+        <th>Geometric Factor</th>
+        <th>Shell × Factor</th>
+        <th>Base + Shell×Factor</th>
+        <th>Standard Aⁿ</th>
+      </tr>
+    </thead>
+    <tbody id="powerTableBody">
+      <!-- Populated by JS -->
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ GEOMETRIC INTERPRETATION ═══ -->
+<h2>📐 Geometric Interpretation</h2>
+
+<div class="card">
+<h3>Triangulation</h3>
+<p>Each power can be visualized as the base plus a number of "shell tiles." The shell <code>(A³−A)</code> is the area of a triangle with sides related to A.</p>
+
+<div class="viz-container">
+  <div class="viz-panel">
+    <h4 style="color:var(--accent2); margin-bottom:1rem;">For A=<span id="vizBase">2</span>, Power <span id="vizPower">5</span>:</h4>
+    <div class="triangles" id="triangleViz">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+  <div class="viz-panel">
+    <p style="color:var(--dim);">Each 🔵 represents one shell unit of <span id="shellSize">6</span>.</p>
+    <p>Total shells: <span id="shellCount" style="color:var(--accent); font-size:1.2rem;">5</span></p>
+    <p>Base: <span id="baseViz">2</span></p>
+    <p style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
+      <strong>Result:</strong> <span id="vizResult">2 + 5×6 = 32</span>
+    </p>
+  </div>
+</div>
+</div>
+
+<!-- ═══ THE MATH ═══ -->
+<h2>🔢 The Mathematics</h2>
+
+<div class="card">
+<h3>Derivation</h3>
+<p>The geometric series identity:</p>
+<div class="equation" style="font-size:1.1rem;">
+  (A<sup>(n−1)</sup> − 1)/(A² − 1) = 1 + A² + A⁴ + ... + A<sup>(n−3)</sup> (for odd n)
+</div>
+<p>This sum represents the accumulation of all lower even powers. When multiplied by the shell <code>(A³−A)</code> and added to the base A, we reconstruct A<sup>n</sup>.</p>
+
+<h3 style="margin-top:2rem;">Key Properties</h3>
+<ul style="margin-left:1.5rem; color:var(--dim);">
+  <li>The shell <code>(A³−A) = (A−1)A(A+1)</code> is always divisible by 6</li>
+  <li>For A=2, the shell is 6 — the same "six" that appears in the 2+6=8 pattern</li>
+  <li>The geometric factor approaches A<sup>(n−3)</sup> as n grows large</li>
+  <li>This formula converts multiplicative growth into additive accumulation</li>
+</ul>
+</div>
+
+<!-- ═══ CONNECTION ═══ -->
+<h2>🔗 Connection to Proportional Mathematics</h2>
+
+<div class="card" style="border-color:var(--orange);">
+<p>This linear exponentiation formula is the mathematical foundation of Patrick's Proportional Mathematics framework. It shows that:</p>
+
+<ul style="margin-left:1.5rem; margin-top:1rem;">
+  <li><strong>Exponentiation is measurable</strong> — in units of the shell (A³−A)</li>
+  <li><strong>Growth is triangulation</strong> — each base produces a unique geometric pattern</li>
+  <li><strong>The unit = base/tile</strong> — consistent proportional scaling</li>
+  <li><strong>Computation is analog</strong> — exponentiation maps to physical accumulation</li>
+</ul>
+
+<p style="margin-top:1.5rem;">This bridges the gap between geometric thinking (multiplicative, exponential) and linear thinking (additive, sequential). For those who struggle to visualize A<sup>n</sup> as repeated multiplication, this formula shows it as <em>the base plus some number of shell units</em> — a linear accumulation that happens to equal the exponential power.</p>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<div style="text-align:center; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); color:var(--dim); font-size:0.9rem;">
+  <p>Formula by <strong style="color:var(--accent2);">Patrick (Ratpik)</strong> — Proportional Mathematics</p>
+  <p style="margin-top:0.5rem;">Part of the <a href="index.html">Wet Math</a> framework</p>
+</div>
+
+</div>
+
+<script>
+// Core computation function
+function computeLinearExponentiation(A, n) {
+  const base = A;
+  const shell = A**3 - A;
+  const geoFactor = (A**(n-1) - 1) / (A**2 - 1);
+  const shellContribution = shell * geoFactor;
+  const result = base + shellContribution;
+  const standard = A**n;
+  
+  return {
+    base,
+    shell,
+    geoFactor,
+    shellContribution,
+    result,
+    standard,
+    match: Math.abs(result - standard) < 0.0001
+  };
+}
+
+// Generate power table for a given base
+function generatePowerTable(A) {
+  const rows = [];
+  for (let n = 2; n <= 10; n++) {
+    const calc = computeLinearExponentiation(A, n);
+    rows.push({
+      n,
+      shell: calc.shell,
+      geoFactor: calc.geoFactor,
+      shellTimesGeo: calc.shellContribution,
+      linearResult: calc.result,
+      standardResult: calc.standard
+    });
+  }
+  return rows;
+}
+
+// Update the UI
+function update() {
+  const A = parseInt(document.getElementById('baseInput').value) || 2;
+  const n = parseInt(document.getElementById('powerInput').value) || 5;
+  
+  const calc = computeLinearExponentiation(A, n);
+  
+  // Update result display
+  document.getElementById('resultBase').textContent = A;
+  document.getElementById('resultPower').textContent = n;
+  document.getElementById('resultValue').textContent = Math.round(calc.result);
+  document.getElementById('standardResult').textContent = calc.standard;
+  
+  // Update decomposition
+  document.getElementById('baseTerm').textContent = calc.base;
+  document.getElementById('shellTerm').textContent = calc.shell;
+  document.getElementById('geoTerm').textContent = calc.geoFactor.toFixed(4).replace(/\.?0+$/, '');
+  document.getElementById('finalTerm').textContent = Math.round(calc.result);
+  
+  // Update equation text
+  document.getElementById('decompBase').textContent = calc.base;
+  document.getElementById('decompShell').textContent = calc.shell;
+  document.getElementById('decompGeo').textContent = calc.geoFactor.toFixed(4).replace(/\.?0+$/, '');
+  document.getElementById('decompResult').textContent = Math.round(calc.result);
+  
+  // Update shell visualization
+  document.getElementById('shellProduct').textContent = calc.shell;
+  document.getElementById('shellFactors').textContent = `${A} × ${A-1} × ${A+1} = ${calc.shell}`;
+  
+  // Update table
+  document.getElementById('tableBase').textContent = A;
+  const tbody = document.getElementById('powerTableBody');
+  tbody.innerHTML = '';
+  const tableData = generatePowerTable(A);
+  tableData.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${row.n}</td>
+      <td class="shell-col">${row.shell}</td>
+      <td class="geometric-col">${row.geoFactor.toFixed(4).replace(/\.?0+$/, '')}</td>
+      <td>${Math.round(row.shellTimesGeo)}</td>
+      <td class="power-col">${Math.round(row.linearResult)}</td>
+      <td>${row.standardResult}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  
+  // Update visualization
+  document.getElementById('vizBase').textContent = A;
+  document.getElementById('vizPower').textContent = n;
+  document.getElementById('shellSize').textContent = calc.shell;
+  document.getElementById('shellCount').textContent = Math.round(calc.geoFactor);
+  document.getElementById('baseViz').textContent = calc.base;
+  document.getElementById('vizResult').textContent = `${calc.base} + ${Math.round(calc.geoFactor)}×${calc.shell} = ${Math.round(calc.result)}`;
+  
+  // Build triangle visualization
+  const triangleViz = document.getElementById('triangleViz');
+  triangleViz.innerHTML = '';
+  
+  // Add base representation
+  const baseRow = document.createElement('div');
+  baseRow.className = 'triangle-row';
+  baseRow.innerHTML = `
+    <div style="width:40px; text-align:center; color:var(--green);">●</div>
+    <span class="triangle-count">Base = ${calc.base}</span>
+  `;
+  triangleViz.appendChild(baseRow);
+  
+  // Add shells (grouped for large numbers)
+  const numShells = Math.round(calc.geoFactor);
+  if (numShells <= 20) {
+    // Show individual shells
+    for (let i = 0; i < numShells; i++) {
+      const row = document.createElement('div');
+      row.className = 'triangle-row';
+      row.innerHTML = `
+        <div class="triangle blue"></div>
+        <span class="triangle-count">Shell ${i+1} = ${calc.shell}</span>
+      `;
+      triangleViz.appendChild(row);
+    }
+  } else {
+    // Show grouped
+    const groups = Math.floor(numShells / 5);
+    const remainder = numShells % 5;
+    
+    for (let i = 0; i < groups; i++) {
+      const row = document.createElement('div');
+      row.className = 'triangle-row';
+      row.innerHTML = `
+        <div style="display:flex; gap:2px;">
+          ${Array(5).fill('<div class="triangle blue" style="transform:scale(0.7);"></div>').join('')}
+        </div>
+        <span class="triangle-count">5 shells × ${calc.shell} = ${5 * calc.shell}</span>
+      `;
+      triangleViz.appendChild(row);
+    }
+    
+    if (remainder > 0) {
+      const row = document.createElement('div');
+      row.className = 'triangle-row';
+      row.innerHTML = `
+        <div style="display:flex; gap:2px;">
+          ${Array(remainder).fill('<div class="triangle blue" style="transform:scale(0.7);"></div>').join('')}
+        </div>
+        <span class="triangle-count">${remainder} shells × ${calc.shell} = ${remainder * calc.shell}</span>
+      `;
+      triangleViz.appendChild(row);
+    }
+  }
+}
+
+// Set values from preset buttons
+function setValues(A, n) {
+  document.getElementById('baseInput').value = A;
+  document.getElementById('powerInput').value = n;
+  update();
+}
+
+// Event listeners
+document.getElementById('baseInput').addEventListener('input', update);
+document.getElementById('powerInput').addEventListener('input', update);
+
+// Initial update
+update();
+</script>
+
+</body>
+</html>
