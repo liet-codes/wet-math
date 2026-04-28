@@ -319,6 +319,36 @@
 <p>The closed formula <code>A<sup>n</sup> = A + (A³−A)((A<sup>(n−1)</sup>−1)/(A²−1))</code> gives the answer in one step. But the iterative form shows the <em>process</em> — how the geometric series accumulates through repeated application of the same simple rule. Each iteration adds another shell-sized contribution, building the exponential through linear accumulation.</p>
 
 <p>This is the "relative line" view: a single recursive process without the "tile" (the closed-form geometric series) in the way. For understanding how the system breathes, the engine view is often more illuminating than the blueprint.</p>
+
+<h3>The Cleaner Unit: 1/(A+1)</h3>
+<p>Patrick discovered that the general case simplifies when we use <code>u = 1/(A+1)</code> instead of <code>u = 1/(A²-1)</code>. For A=2 these coincide (both equal 1/3), but for A≠2 the cleaner unit reveals deeper structure:</p>
+
+<div class="equation" style="font-size:1.1rem; background:rgba(34,197,94,0.1); border-color:var(--green);">
+  A<sup>n</sup> >< x₀=0<br>
+  (n−1) × [ x := Ax + 1/(A+1) ]<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⇒ A + (A³−A)x
+</div>
+
+<p>Why this works: the shell factors as (A³−A) = (A−1)·A·(A+1), so using 1/(A+1) as the unit means the loop counts in terms that mesh cleanly with the shell's structure. After (n−1) iterations:</p>
+
+<p style="text-align:center; font-family:'Fira Code',monospace; color:var(--accent2);">
+  x = (A^{n-1} − 1)/((A−1)(A+1)) = (A^{n-1} − 1)/(A² − 1)
+</p>
+
+<p>Which gives the same final result, but the iteration step is cleaner.</p>
+
+<h4>Comparison for A=3, n=4</h4>
+<table style="margin:1rem 0;">
+  <thead>
+    <tr><th>Unit</th><th>u value</th><th>After 3 iterations</th><th>Final: 3 + 24·x</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1/(A²−1)</td><td>1/8</td><td>x = 13/4 = 3.25</td><td>3 + 78 = 81 ✓</td></tr>
+    <tr><td>1/(A+1)</td><td>1/4</td><td>x = 13/4 = 3.25</td><td>3 + 78 = 81 ✓</td></tr>
+  </tbody>
+</table>
+
+<p>Both reach the same destination, but <code>1/(A+1)</code> is the natural unit — it connects directly to the (A+1) factor in the shell's triangulation.</p>
 </div>
 
 <!-- ═══ FOOTER ═══ -->
